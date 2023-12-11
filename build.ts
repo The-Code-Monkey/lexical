@@ -8,6 +8,7 @@ await Bun.build({
     plugins: [
         dts(),
     ],
+    minify: true,
     externals: [
         'react'
     ]

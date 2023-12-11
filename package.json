@@ -41,8 +41,16 @@
     "access": "public"
   },
   "devDependencies": {
+    "@size-limit/preset-big-lib": "^11.0.1",
     "@types/react": "^18.2.43",
     "bun-plugin-dts": "^0.2.1",
-    "bun-types": "^1.0.15"
-  }
+    "bun-types": "^1.0.15",
+    "size-limit": "^11.0.1"
+  },
+  "size-limit": [
+    {
+      "path": "dist/esm/index.js",
+      "limit": "170 KB"
+    }
+  ]
 }
