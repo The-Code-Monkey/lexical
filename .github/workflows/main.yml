@@ -1,0 +1,30 @@
+name: CI
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-22.04
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: Install deps
+        run: bun install
+
+#      - name: Lint
+#        run: bun lint
+
+# no tests yet
+#      - name: Test
+#        run: bun run test
+
+      - name: Size
+        run: bun size
