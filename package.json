@@ -44,7 +44,7 @@
     "@size-limit/preset-big-lib": "11.0.1",
     "@types/react": "18.2.46",
     "bun-plugin-dts": "0.2.1",
-    "bun-types": "1.0.20",
+    "bun-types": "1.0.21",
     "size-limit": "11.0.1"
   },
   "size-limit": [
