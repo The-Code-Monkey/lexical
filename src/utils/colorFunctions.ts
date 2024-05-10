@@ -81,7 +81,7 @@ const hex2rgb = (hex: string): RGB => {
           `#${red}${red}${green}${green}${blue}${blue}`,
       )
       .slice(1)
-      .match(/.{2}/gv) ?? []
+      .match(/.{2}/g) ?? []
   ).map((hexValue) => Number.parseInt(hexValue, 16));
 
   const RGB_INDEX_BLUE = 2;
