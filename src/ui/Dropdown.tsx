@@ -217,9 +217,6 @@ const DropDown = ({
       const { current: button } = buttonReference;
       const { current: dropDown } = dropDownReference;
 
-      // eslint-disable-next-line no-console
-      console.log(button, dropDown);
-
       if (button !== null && dropDown !== null) {
         const { left, top } = button.getBoundingClientRect();
         const newPositionTop = top + button.offsetHeight + dropDownPadding;
