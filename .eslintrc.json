@@ -52,6 +52,8 @@
     "@typescript-eslint/init-declarations": "off",
     "ssr-friendly/no-dom-globals-in-react-fc": "off",
     "id-length": "off",
+    "regexp/require-unicode-regexp": "off",
+    "regexp/require-unicode-sets-regexp": "off",
     "import/no-unused-modules": "warn"
   }
 }

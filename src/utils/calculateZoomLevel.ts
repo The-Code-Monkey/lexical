@@ -1,6 +1,4 @@
-const IS_FIREFOX = /^(?!.*seamonkey)(?=.*firefox).*/iv.test(
-  navigator.userAgent,
-);
+const IS_FIREFOX = /^(?!.*seamonkey)(?=.*firefox).*/i.test(navigator.userAgent);
 
 const calculateZoom = (element: Element | null, zoom = 1): number => {
   if (!element) {
