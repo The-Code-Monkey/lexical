@@ -18,7 +18,7 @@ interface DropDownContextType {
   registerItem: (reference: RefObject<HTMLButtonElement>) => void;
 }
 
-const DropDownContext = createContext<DropDownContextType | undefined>(
+export const DropDownContext = createContext<DropDownContextType | undefined>(
   undefined,
 );
 

@@ -3,11 +3,11 @@ import { TablePlugin as LexicalTablePlugin } from "@lexical/react/LexicalTablePl
 import { INSERT_TABLE_COMMAND } from "@lexical/table";
 import { Grid } from "@techstack/react-feather";
 import type { LexicalEditor } from "lexical";
-import { type JSX, useCallback, useEffect, useState } from "react";
+import { type JSX, useCallback, useContext, useEffect, useState } from "react";
 
 import Button from "../ui/Button";
 import { DialogActions } from "../ui/Dialog";
-import { DropDownItem } from "../ui/Dropdown";
+import { DropDownContext, DropDownItem } from "../ui/Dropdown";
 import TextInput from "../ui/TextInput";
 
 interface InsertTableDialogProps {
@@ -89,6 +89,7 @@ interface TablePluginProps {
 
 const TablePlugin = ({ showModal }: TablePluginProps) => {
   const [editor] = useLexicalComposerContext();
+  const dropDownContext = useContext(DropDownContext);
 
   const handleShowModal = useCallback(() => {
     showModal("Insert Table", (onClose) => (
@@ -99,10 +100,17 @@ const TablePlugin = ({ showModal }: TablePluginProps) => {
   return (
     <>
       <LexicalTablePlugin hasCellBackgroundColor hasCellMerge />
-      <DropDownItem onClick={handleShowModal} title="table">
-        <Grid size={12} />
-        Table
-      </DropDownItem>
+      {dropDownContext === undefined ? (
+        <Button onClick={handleShowModal} title="table">
+          <Grid size={12} />
+          Table
+        </Button>
+      ) : (
+        <DropDownItem onClick={handleShowModal} title="table">
+          <Grid size={12} />
+          Table
+        </DropDownItem>
+      )}
     </>
   );
 };
