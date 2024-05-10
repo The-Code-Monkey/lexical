@@ -211,15 +211,17 @@ const DropDown = ({
     }
   }, []);
 
-  useEffect(() => {
-    const { current: button } = buttonReference;
-    const { current: dropDown } = dropDownReference;
-
-    if (showDropDown && button !== null && dropDown !== null) {
-      dropDown.style.top = "40px";
-      dropDown.style.left = "0px";
-    }
-  }, [dropDownReference, buttonReference, showDropDown]);
+  // useEffect(() => {
+  //   const { current: button } = buttonReference;
+  //   const { current: dropDown } = dropDownReference;
+  //
+  //   console.log(button, dropdown, showDropDown);
+  //
+  //   if (showDropDown && button !== null && dropDown !== null) {
+  //     dropDown.style.top = "40px";
+  //     dropDown.style.left = "0px";
+  //   }
+  // }, [dropDownReference, buttonReference, showDropDown]);
 
   // eslint-disable-next-line @typescript-eslint/consistent-return
   useEffect(() => {
