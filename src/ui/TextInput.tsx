@@ -5,8 +5,6 @@ import {
   useCallback,
 } from "react";
 
-import { InputWrapper } from "./styles";
-
 type Props = Readonly<{
   "data-test-id"?: string;
   label: string;
@@ -32,7 +30,7 @@ const TextInput = ({
   );
 
   return (
-    <InputWrapper className="Input__wrapper">
+    <div className="Input__wrapper">
       <label className="Input__label">{label}</label>
       <input
         className="Input__input"
@@ -42,7 +40,7 @@ const TextInput = ({
         type={type}
         value={value}
       />
-    </InputWrapper>
+    </div>
   );
 };
 

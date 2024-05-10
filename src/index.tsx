@@ -1,8 +1,8 @@
+import type { InitialConfigType } from "@lexical/react/LexicalComposer";
 import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
 import { MarkdownShortcutPlugin } from "@lexical/react/LexicalMarkdownShortcutPlugin";
 import { useCallback, useEffect, useState } from "react";
 
-import type { EditorInterface } from "../dist/types/editor";
 import { Divider, Toolbar } from "./components";
 import Editor from "./editor";
 import {
@@ -18,6 +18,14 @@ import {
 import OnChangePlugin from "./plugins/OnChangePlugin";
 import TableCellResizer from "./plugins/TableCellResizer";
 import { defaultConfig } from "./utils/configs";
+
+interface EditorInterface {
+  config?: InitialConfigType;
+  name: string;
+  onChange: (a: string) => void;
+  placeholder?: string;
+  value: string;
+}
 
 const EditorContainer = ({
   config = defaultConfig,

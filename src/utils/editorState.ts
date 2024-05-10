@@ -1,5 +1,5 @@
 import { $generateNodesFromDOM } from "@lexical/html";
-import type { $getRoot, $insertNodes, LexicalEditor } from "lexical";
+import { $getRoot, $insertNodes, type LexicalEditor } from "lexical";
 
 const getEditorState = (value: string) => (editor: LexicalEditor) => {
   editor.update(() => {

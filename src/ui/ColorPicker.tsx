@@ -8,7 +8,6 @@ import {
 } from "react";
 
 import { clamp, transformColor } from "../utils/colorFunctions";
-import { ColorPickerWrapper } from "./styles";
 import TextInput from "./TextInput";
 
 const WIDTH = 214;
@@ -218,11 +217,7 @@ const ColorPicker = ({ color, onChange }: ColorPickerProps): JSX.Element => {
   };
 
   return (
-    <ColorPickerWrapper
-      className="color-picker-wrapper"
-      ref={innerDivReference}
-      style={style}
-    >
+    <div className="color-picker-wrapper" ref={innerDivReference} style={style}>
       <TextInput label="Hex" onChange={onSetHex} value={inputColor} />
       <div className="color-picker-basic-color">
         {basicColors.map((basicColor) => (
@@ -270,7 +265,7 @@ const ColorPicker = ({ color, onChange }: ColorPickerProps): JSX.Element => {
           backgroundColor: selfColor.hex,
         }}
       />
-    </ColorPickerWrapper>
+    </div>
   );
 };
 

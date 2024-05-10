@@ -1,6 +1,6 @@
 import { $patchStyleText } from "@lexical/selection";
 import { $isTableSelection } from "@lexical/table";
-import type { $getSelection, $isRangeSelection, LexicalEditor } from "lexical";
+import { $getSelection, $isRangeSelection, type LexicalEditor } from "lexical";
 
 const applyStyleText =
   (editor: LexicalEditor) => (styles: { [key: string]: string }) => {

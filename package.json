@@ -46,14 +46,6 @@
   "main": "./dist/esm/index.js",
   "module": "./dist/esm/index.js",
   "exports": {
-    ".": {
-      "import": "./dist/esm/index.js",
-      "require": "./dist/esm/index.js"
-    },
-    "./css": {
-      "import": "./dist/index.scss",
-      "require": "./dist/index.scss"
-    },
     "./editor": {
       "import": "./dist/esm/editor.js",
       "require": "./dist/esm/editor.js"
@@ -61,6 +53,14 @@
     "./plugins": {
       "import": "./dist/esm/plugins/index.js",
       "require": "./dist/esm/plugins/index.js"
+    },
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/esm/index.js"
+    },
+    "./css": {
+      "import": "./dist/index.scss",
+      "require": "./dist/index.scss"
     }
   },
   "typings": "dist/types/index.d.ts",
