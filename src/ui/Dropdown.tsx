@@ -15,6 +15,7 @@ import {
   useRef,
   useState,
 } from "react";
+import { createPortal } from "react-dom";
 
 interface DropDownContextType {
   registerItem: (reference: RefObject<HTMLButtonElement>) => void;
@@ -68,7 +69,7 @@ const DropDownItem = ({
 };
 
 interface DropdownItemsProps {
-  dropDownRef: RefObject<HTMLButtonElement>;
+  dropDownRef: RefObject<HTMLDivElement>;
   onClose: () => void;
 }
 
@@ -93,7 +94,7 @@ const DropDownItems = ({
   const LAST_INDEX = -1;
 
   const handleKeyDown = useCallback(
-    (event: KeyboardEvent<HTMLButtonElement>) => {
+    (event: KeyboardEvent<HTMLDivElement>) => {
       if (!items) {
         return;
       }
@@ -163,7 +164,8 @@ const DropDownItems = ({
 
   return (
     <DropDownContext.Provider value={contextValue}>
-      <button
+      {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
+      <div
         className="toolbar-dropdown"
         onKeyDown={handleKeyDown}
         ref={dropDownReference}
@@ -173,10 +175,9 @@ const DropDownItems = ({
           position: "absolute",
           zIndex: 1000,
         }}
-        type="button"
       >
         {children}
-      </button>
+      </div>
     </DropDownContext.Provider>
   );
 };
@@ -199,7 +200,7 @@ const DropDown = ({
   children,
   disabled = false,
 }: PropsWithChildren<DropdownProps>): JSX.Element => {
-  const dropDownReference = useRef<HTMLButtonElement>(null);
+  const dropDownReference = useRef<HTMLDivElement>(null);
   const buttonReference = useRef<HTMLButtonElement>(null);
   const [showDropDown, setShowDropDown] = useState(false);
 
@@ -307,11 +308,13 @@ const DropDown = ({
           <ChevronDown />
         </i>
       </button>
-      {Boolean(showDropDown) && (
-        <DropDownItems dropDownRef={dropDownReference} onClose={handleClose}>
-          {children}
-        </DropDownItems>
-      )}
+      {Boolean(showDropDown) &&
+        createPortal(
+          <DropDownItems dropDownRef={dropDownReference} onClose={handleClose}>
+            {children}
+          </DropDownItems>,
+          document.body,
+        )}
     </>
   );
 };
