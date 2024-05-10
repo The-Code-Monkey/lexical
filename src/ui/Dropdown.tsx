@@ -209,11 +209,32 @@ const DropDown = ({
     }
   }, []);
 
+  const handleButtonPositionUpdate = useCallback(() => {
+    if (showDropDown) {
+      const { current: button } = buttonReference;
+      const { current: dropDown } = dropDownReference;
+
+      // eslint-disable-next-line no-console
+      console.log(button, dropDown);
+
+      if (button !== null && dropDown !== null) {
+        const { left, top } = button.getBoundingClientRect();
+        const newPositionTop = top + button.offsetHeight + dropDownPadding;
+        const newPositionLeft = left;
+
+        if (newPositionTop !== dropDown.getBoundingClientRect().top) {
+          dropDown.style.top = `${newPositionTop}px`;
+        }
+
+        if (newPositionLeft !== dropDown.getBoundingClientRect().left) {
+          dropDown.style.left = `${newPositionLeft}px`;
+        }
+      }
+    }
+  }, [showDropDown]);
+
   useEffect(() => {
     const { current: button } = buttonReference;
-
-    // eslint-disable-next-line no-console
-    console.log(button, showDropDown);
 
     const handle = ({ target }: MouseEvent) => {
       if (button !== null && showDropDown) {
@@ -239,33 +260,17 @@ const DropDown = ({
   }, [dropDownReference, buttonReference, showDropDown]);
 
   useEffect(() => {
-    const handleButtonPositionUpdate = () => {
-      if (showDropDown) {
-        const { current: button } = buttonReference;
-        const { current: dropDown } = dropDownReference;
-
-        if (button !== null && dropDown !== null) {
-          const { left, top } = button.getBoundingClientRect();
-          const newPositionTop = top + button.offsetHeight + dropDownPadding;
-          const newPositionLeft = left;
-
-          if (newPositionTop !== dropDown.getBoundingClientRect().top) {
-            dropDown.style.top = `${newPositionTop}px`;
-          }
-
-          if (newPositionLeft !== dropDown.getBoundingClientRect().left) {
-            dropDown.style.left = `${newPositionLeft}px`;
-          }
-        }
-      }
-    };
-
     document.addEventListener("scroll", handleButtonPositionUpdate);
 
     return () => {
       document.removeEventListener("scroll", handleButtonPositionUpdate);
     };
-  }, [buttonReference, dropDownReference, showDropDown]);
+  }, [
+    buttonReference,
+    dropDownReference,
+    handleButtonPositionUpdate,
+    showDropDown,
+  ]);
 
   const toggleDropDown = useCallback(() => {
     setShowDropDown((previous) => !previous);
