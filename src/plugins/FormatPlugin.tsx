@@ -144,7 +144,7 @@ const FormatPlugin = () => {
   const { icon: currentIcon } = currentFormat;
 
   return (
-    <Dropdown buttonClassName="toolbar-dropdown" buttonIcon={currentIcon}>
+    <Dropdown buttonClassName="toolbar-item spaced" buttonIcon={currentIcon}>
       {Object.keys(ELEMENT_FORMAT_OPTIONS).map((key) => {
         if (isSupportedBlockTypesType(key)) {
           const { [key]: element } = ELEMENT_FORMAT_OPTIONS;

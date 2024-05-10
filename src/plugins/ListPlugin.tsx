@@ -13,12 +13,7 @@ import {
   $getNearestNodeOfType,
   mergeRegister,
 } from "@lexical/utils";
-import {
-  CheckSquare,
-  ChevronDown,
-  ListOl,
-  ListUl,
-} from "@techstack/react-feather";
+import { CheckSquare, ListOl, ListUl } from "@techstack/react-feather";
 import {
   $getSelection,
   $isRangeSelection,
@@ -29,14 +24,9 @@ import {
   SELECTION_CHANGE_COMMAND,
   type TextNode,
 } from "lexical";
-import {
-  type ReactNode,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { type ReactNode, useCallback, useEffect, useState } from "react";
 
+import Dropdown, { DropDownItem } from "../ui/Dropdown";
 import { LOW_PRIORITY } from "../utils/priorities";
 
 type SupportedListTypes = "bullet" | "check" | "number";
@@ -55,9 +45,6 @@ const listTypeToListName: Record<SupportedListTypes, string> = {
 
 const ListPlugin = () => {
   const [editor] = useLexicalComposerContext();
-  const dropDownReference = useRef<HTMLDivElement>(null);
-
-  const [showListOptionsDropdown, setShowListOptionsDropdown] = useState(false);
   const [listType, setListType] = useState<SupportedListTypes>("bullet");
 
   const dispatchCommand = useCallback(
@@ -73,17 +60,14 @@ const ListPlugin = () => {
 
   const formatBulletList = useCallback(() => {
     dispatchCommand(INSERT_UNORDERED_LIST_COMMAND, "bullet");
-    setShowListOptionsDropdown(false);
   }, [dispatchCommand]);
 
   const formatNumberedList = useCallback(() => {
     dispatchCommand(INSERT_ORDERED_LIST_COMMAND, "number");
-    setShowListOptionsDropdown(false);
   }, [dispatchCommand]);
 
   const formatCheckList = useCallback(() => {
     dispatchCommand(INSERT_CHECK_LIST_COMMAND, "check");
-    setShowListOptionsDropdown(false);
   }, [dispatchCommand]);
 
   const getSelectionElement = useCallback((selection: RangeSelection) => {
@@ -152,52 +136,27 @@ const ListPlugin = () => {
     [editor, update],
   );
 
-  const toggleDropdown = useCallback(() => {
-    setShowListOptionsDropdown((previousState) => !previousState);
-  }, []);
-
   return (
     <>
       <LexicalListPlugin />
-      <button
-        aria-label="Formatting Options"
-        className="toolbar-item block-controls"
-        onClick={toggleDropdown}
-        type="button"
+      <Dropdown
+        buttonClassName="toolbar-item spaced"
+        buttonIcon={supportedListTypesIcons[listType]}
+        buttonLabel={listTypeToListName[listType]}
       >
-        <span className={`icon block-type ${listType}`}>
-          {supportedListTypesIcons[listType]}
-        </span>
-        <span className="text">{listTypeToListName[listType]}</span>
-        <i className="chevron-down">
-          <ChevronDown />
-        </i>
-      </button>
-      {showListOptionsDropdown && (
-        <div className="toolbar-dropdown" ref={dropDownReference}>
-          <button className="item" onClick={formatBulletList} type="button">
-            <span className="icon bullet-list">
-              <ListUl size={14} />
-            </span>
-            <span className="text">Bullet List</span>
-            {listType === "bullet" && <span className="active" />}
-          </button>
-          <button className="item" onClick={formatNumberedList} type="button">
-            <span className="icon numbered-list">
-              <ListOl size={14} />
-            </span>
-            <span className="text">Numbered List</span>
-            {listType === "number" && <span className="active" />}
-          </button>
-          <button className="item" onClick={formatCheckList} type="button">
-            <span className="icon check-list">
-              <CheckSquare size={14} />
-            </span>
-            <span className="text">Check List</span>
-            {listType === "check" && <span className="active" />}
-          </button>
-        </div>
-      )}
+        <DropDownItem onClick={formatNumberedList} title="number">
+          <ListOl size={14} />
+          Numbered List
+        </DropDownItem>
+        <DropDownItem onClick={formatBulletList} title="bullet">
+          <ListUl size={14} />
+          Bullet List
+        </DropDownItem>
+        <DropDownItem onClick={formatCheckList} title="check">
+          <CheckSquare size={14} />
+          Check List
+        </DropDownItem>
+      </Dropdown>
     </>
   );
 };
