@@ -63,7 +63,7 @@ const PortalImpl = ({
         }
       }
     };
-  }, [willCloseOnClickOutside, onClose]);
+  }, [onClose, willCloseOnClickOutside]);
 
   return (
     <dialog className="Modal__overlay">
