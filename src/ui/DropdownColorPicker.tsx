@@ -24,7 +24,6 @@ export default function DropdownColorPicker({
   color,
   isDisabled = false,
   onChange,
-  shouldStopCloseOnClickSelf = true,
 }: Props) {
   return (
     <DropDown
@@ -34,7 +33,6 @@ export default function DropdownColorPicker({
       buttonIconClassName={buttonIconClassName}
       buttonLabel={buttonLabel}
       disabled={isDisabled}
-      stopCloseOnClickSelf={shouldStopCloseOnClickSelf}
     >
       <ColorPicker color={color} onChange={onChange} />
     </DropDown>
