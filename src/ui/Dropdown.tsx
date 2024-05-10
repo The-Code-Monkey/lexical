@@ -18,7 +18,7 @@ interface DropDownContextType {
   registerItem: (reference: RefObject<HTMLButtonElement>) => void;
 }
 
-export const DropDownContext = createContext<DropDownContextType | undefined>(
+const DropDownContext = createContext<DropDownContextType | undefined>(
   undefined,
 );
 
@@ -193,7 +193,7 @@ const DropDown = ({
   buttonAriaLabel,
   buttonClassName,
   buttonIcon,
-  buttonIconClassName,
+  buttonIconClassName = "icon",
   buttonLabel,
   children,
   disabled = false,
@@ -293,9 +293,7 @@ const DropDown = ({
         ref={buttonReference}
         type="button"
       >
-        {Boolean(buttonIconClassName) && (
-          <span className={buttonIconClassName}>{buttonIcon}</span>
-        )}
+        <span className={buttonIconClassName}>{buttonIcon}</span>
         {Boolean(buttonLabel) && (
           <span className="text dropdown-button-text">{buttonLabel}</span>
         )}
@@ -314,4 +312,4 @@ const DropDown = ({
 
 export default DropDown;
 
-export { DropDownItem };
+export { DropDownContext, DropDownItem };
