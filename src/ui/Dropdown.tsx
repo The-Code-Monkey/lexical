@@ -281,8 +281,13 @@ const DropDown = ({
 
   const toggleDropDown = useCallback(() => {
     setShowDropDown((previous) => !previous);
-    handleButtonPositionUpdate();
-  }, [handleButtonPositionUpdate]);
+  }, []);
+
+  useEffect(() => {
+    if (showDropDown) {
+      handleButtonPositionUpdate();
+    }
+  }, [showDropDown, handleButtonPositionUpdate]);
 
   return (
     <>
