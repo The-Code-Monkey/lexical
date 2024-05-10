@@ -162,7 +162,7 @@ const DropDownItems = ({
   return (
     <DropDownContext.Provider value={contextValue}>
       <button
-        className="dropdown"
+        className="toolbar-dropdown"
         onKeyDown={handleKeyDown}
         ref={dropDownReference}
         // eslint-disable-next-line react-perf/jsx-no-new-object-as-prop

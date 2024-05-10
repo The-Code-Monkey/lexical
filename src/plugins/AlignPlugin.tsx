@@ -143,7 +143,7 @@ const AlignPlugin = () => {
 
   return (
     <DropDown
-      buttonClassName="item"
+      buttonClassName="toolbar-item spaced"
       buttonIcon={formatOption.icon}
       buttonLabel={formatOption.name}
     >
