@@ -54,6 +54,7 @@
     "id-length": "off",
     "regexp/require-unicode-regexp": "off",
     "regexp/require-unicode-sets-regexp": "off",
+    "@typescript-eslint/strict-boolean-expressions": "off",
     "import/no-unused-modules": "warn"
   }
 }

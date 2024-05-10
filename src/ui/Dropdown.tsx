@@ -186,7 +186,6 @@ interface DropdownProps {
   buttonIconClassName?: string;
   buttonLabel?: string;
   disabled?: boolean;
-  stopCloseOnClickSelf?: boolean;
 }
 
 const DropDown = ({
@@ -197,7 +196,6 @@ const DropDown = ({
   buttonLabel,
   children,
   disabled = false,
-  stopCloseOnClickSelf,
 }: PropsWithChildren<DropdownProps>): JSX.Element => {
   const dropDownReference = useRef<HTMLButtonElement>(null);
   const buttonReference = useRef<HTMLButtonElement>(null);
@@ -211,30 +209,18 @@ const DropDown = ({
     }
   }, []);
 
-  // useEffect(() => {
-  //   const { current: button } = buttonReference;
-  //   const { current: dropDown } = dropDownReference;
-  //
-  //   console.log(button, dropdown, showDropDown);
-  //
-  //   if (showDropDown && button !== null && dropDown !== null) {
-  //     dropDown.style.top = "40px";
-  //     dropDown.style.left = "0px";
-  //   }
-  // }, [dropDownReference, buttonReference, showDropDown]);
-
-  // eslint-disable-next-line @typescript-eslint/consistent-return
   useEffect(() => {
     const { current: button } = buttonReference;
 
-    if (button !== null && showDropDown) {
-      const handle = ({ target }: MouseEvent) => {
+    // eslint-disable-next-line no-console
+    console.log(button, showDropDown);
+
+    const handle = ({ target }: MouseEvent) => {
+      if (button !== null && showDropDown) {
         if (
-          ((stopCloseOnClickSelf ?? false) &&
-            dropDownReference.current?.contains(
-              target instanceof Node ? target : null,
-            )) ??
-          false
+          dropDownReference.current?.contains(
+            target instanceof Node ? target : null,
+          )
         ) {
           return;
         }
@@ -242,15 +228,15 @@ const DropDown = ({
         if (!button.contains(target instanceof Node ? target : null)) {
           setShowDropDown(false);
         }
-      };
+      }
+    };
 
-      document.addEventListener("click", handle);
+    document.addEventListener("click", handle);
 
-      return () => {
-        document.removeEventListener("click", handle);
-      };
-    }
-  }, [dropDownReference, buttonReference, showDropDown, stopCloseOnClickSelf]);
+    return () => {
+      document.removeEventListener("click", handle);
+    };
+  }, [dropDownReference, buttonReference, showDropDown]);
 
   useEffect(() => {
     const handleButtonPositionUpdate = () => {
