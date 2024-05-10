@@ -1,0 +1,31 @@
+{
+  "include": ["src"],
+  "exclude": [
+    "src/**/*.spec.tsx",
+    "src/**/*.test.tsx",
+    "src/**/*.spec.ts",
+    "src/**/*.test.ts",
+    "src/**/story.tsx"
+  ],
+  "compilerOptions": {
+    "module": "ESNext",
+    "target": "ESNext",
+    "moduleResolution": "bundler",
+    "allowJs": true,
+    "importHelpers": true,
+    "declaration": true,
+    "noUnusedLocals": true,
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "noEmit": false,
+    "strictNullChecks": true,
+    "noUncheckedIndexedAccess": true,
+    "strict": true,
+    "rootDir": "src",
+    "outDir": "./dist/esm",
+    "declarationDir": "dist/types",
+    "jsx": "react-jsx",
+    "lib": ["dom"]
+  }
+}
