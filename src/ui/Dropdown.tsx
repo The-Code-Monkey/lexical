@@ -1,3 +1,5 @@
+/* eslint-disable etc/no-commented-out-code */
+
 import { ChevronDown } from "@techstack/react-feather";
 import {
   createContext,
@@ -237,6 +239,8 @@ const DropDown = ({
     const { current: button } = buttonReference;
 
     const handle = ({ target }: MouseEvent) => {
+      handleButtonPositionUpdate();
+
       if (button !== null && showDropDown) {
         if (
           dropDownReference.current?.contains(
@@ -257,20 +261,25 @@ const DropDown = ({
     return () => {
       document.removeEventListener("click", handle);
     };
-  }, [dropDownReference, buttonReference, showDropDown]);
-
-  useEffect(() => {
-    document.addEventListener("scroll", handleButtonPositionUpdate);
-
-    return () => {
-      document.removeEventListener("scroll", handleButtonPositionUpdate);
-    };
   }, [
-    buttonReference,
     dropDownReference,
-    handleButtonPositionUpdate,
+    buttonReference,
     showDropDown,
+    handleButtonPositionUpdate,
   ]);
+
+  // useEffect(() => {
+  //   document.addEventListener("scroll", handleButtonPositionUpdate);
+  //
+  //   return () => {
+  //     document.removeEventListener("scroll", handleButtonPositionUpdate);
+  //   };
+  // }, [
+  //   buttonReference,
+  //   dropDownReference,
+  //   handleButtonPositionUpdate,
+  //   showDropDown,
+  // ]);
 
   const toggleDropDown = useCallback(() => {
     setShowDropDown((previous) => !previous);

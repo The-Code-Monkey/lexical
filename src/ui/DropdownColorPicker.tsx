@@ -12,7 +12,6 @@ interface Props {
   color: string;
   isDisabled?: boolean;
   onChange: (color: string) => void;
-  shouldStopCloseOnClickSelf?: boolean;
 }
 
 export default function DropdownColorPicker({
