@@ -76,7 +76,7 @@ const hex2rgb = (hex: string): RGB => {
   const rbgArray = (
     hex
       .replace(
-        /^#?(?<temp1>[\da-f])(?<temp2>[\da-f])(?<temp3>[\da-f])$/iv,
+        /^#?(?<temp1>[\da-f])(?<temp2>[\da-f])(?<temp3>[\da-f])$/i,
         (match, red, green, blue) =>
           `#${red}${red}${green}${green}${blue}${blue}`,
       )

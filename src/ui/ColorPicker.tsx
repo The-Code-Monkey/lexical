@@ -142,7 +142,7 @@ const ColorPicker = ({ color, onChange }: ColorPickerProps): JSX.Element => {
   const onSetHex = useCallback((hex: string) => {
     setInputColor(hex);
 
-    if (/^#[\da-f]{6}$/iv.test(hex)) {
+    if (/^#[\da-f]{6}$/i.test(hex)) {
       const newColor = transformColor("hex", hex);
 
       setSelfColor(newColor);
