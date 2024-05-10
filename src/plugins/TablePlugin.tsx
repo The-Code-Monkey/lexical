@@ -101,13 +101,17 @@ const TablePlugin = ({ showModal }: TablePluginProps) => {
     <>
       <LexicalTablePlugin hasCellBackgroundColor hasCellMerge />
       {dropDownContext === undefined ? (
-        <Button onClick={handleShowModal} title="table">
-          <Grid size={12} />
+        <Button
+          className="toolbar-item spaced"
+          onClick={handleShowModal}
+          title="table"
+        >
+          <Grid size={16} />
           Table
         </Button>
       ) : (
         <DropDownItem onClick={handleShowModal} title="table">
-          <Grid size={12} />
+          <Grid size={16} />
           Table
         </DropDownItem>
       )}
