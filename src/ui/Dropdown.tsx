@@ -239,8 +239,6 @@ const DropDown = ({
     const { current: button } = buttonReference;
 
     const handle = ({ target }: MouseEvent) => {
-      handleButtonPositionUpdate();
-
       if (button !== null && showDropDown) {
         if (
           dropDownReference.current?.contains(
@@ -283,7 +281,8 @@ const DropDown = ({
 
   const toggleDropDown = useCallback(() => {
     setShowDropDown((previous) => !previous);
-  }, []);
+    handleButtonPositionUpdate();
+  }, [handleButtonPositionUpdate]);
 
   return (
     <>
