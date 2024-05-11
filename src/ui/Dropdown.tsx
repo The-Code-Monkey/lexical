@@ -217,7 +217,8 @@ const DropDown = ({
 
       if (button !== null && dropDown !== null) {
         const { left, top } = button.getBoundingClientRect();
-        const newPositionTop = top + button.offsetHeight + dropDownPadding;
+        const newPositionTop =
+          top + button.offsetHeight + dropDownPadding + window.scrollY;
         const newPositionLeft = left;
 
         if (newPositionTop !== dropDown.getBoundingClientRect().top) {

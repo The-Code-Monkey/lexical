@@ -100,8 +100,6 @@ const EditorContainer = ({
         <LinkPlugin />
         <ListPlugin />
         <AlignPlugin />
-        <TablePlugin showModal={showModal} />
-        <ImagePlugin showModal={showModal} />
         <Dropdown buttonIcon={buttonIcon} buttonLabel="Insert">
           <TablePlugin showModal={showModal} />
           <ImagePlugin showModal={showModal} />
