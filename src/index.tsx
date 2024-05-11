@@ -90,7 +90,6 @@ const EditorContainer = ({
       placeholder={placeholder}
       value={value}
     >
-      {modal}
       {/* toolbar plugins */}
       <Toolbar>
         <FormatPlugin />
@@ -107,11 +106,11 @@ const EditorContainer = ({
       </Toolbar>
       {/* non toolbar plugins */}
       <OnChangePlugin onChange={onChangeFunction} />
-      {/* Old Plugins */}
       <HistoryPlugin />
       <MarkdownShortcutPlugin />
       <TableCellResizer />
       <TableActionMenuPlugin />
+      {modal}
     </Editor>
   );
 };
