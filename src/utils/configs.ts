@@ -8,6 +8,7 @@ import { TableCellNode, TableNode, TableRowNode } from "@lexical/table";
 import { TextNode } from "lexical";
 
 import ExtendedTextNode from "../nodes/ExtendedTextNode";
+import { ImageNode } from "../nodes/ImageNode";
 import { Default } from "../themes";
 
 const defaultConfig: InitialConfigType = {
@@ -27,6 +28,7 @@ const defaultConfig: InitialConfigType = {
     AutoLinkNode,
     LinkNode,
     HorizontalRuleNode,
+    ImageNode,
     ExtendedTextNode,
     {
       replace: TextNode,
