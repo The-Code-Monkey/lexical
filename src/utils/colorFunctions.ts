@@ -261,7 +261,7 @@ const isRgb = (color: Color[keyof Color]): color is Color["rgb"] =>
   typeof color === "object" && "r" in color && "g" in color && "b" in color;
 
 const transformColor = <Match extends keyof Color>(
-  format: Match,
+  _format: Match,
   color: Color[Match],
 ): Color => {
   if (isHex(color)) {

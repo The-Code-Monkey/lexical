@@ -145,8 +145,9 @@ const FormatPlugin = () => {
 
   return (
     <Dropdown buttonClassName="toolbar-item spaced" buttonIcon={currentIcon}>
-      {Object.keys(ELEMENT_FORMAT_OPTIONS).map((key) => {
-        if (isSupportedBlockTypesType(key)) {
+      {Object.keys(ELEMENT_FORMAT_OPTIONS)
+        .filter(isSupportedBlockTypesType)
+        .map((key) => {
           const { [key]: element } = ELEMENT_FORMAT_OPTIONS;
           const { icon, name } = element;
 
@@ -160,10 +161,7 @@ const FormatPlugin = () => {
               {name}
             </DropDownItem>
           );
-        }
-
-        return null;
-      })}
+        })}
     </Dropdown>
   );
 };
