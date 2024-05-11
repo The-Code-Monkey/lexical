@@ -146,9 +146,7 @@ class ExtendedTextNode extends TextNode {
 
   public isSimpleText() {
     return (
-      // eslint-disable-next-line functional/no-this-expressions
       (this.__type === "text" || this.__type === "extended-text") &&
-      // eslint-disable-next-line functional/no-this-expressions
       this.__mode === 0
     );
   }

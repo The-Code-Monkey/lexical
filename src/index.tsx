@@ -1,7 +1,8 @@
 import type { InitialConfigType } from "@lexical/react/LexicalComposer";
 import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
 import { MarkdownShortcutPlugin } from "@lexical/react/LexicalMarkdownShortcutPlugin";
-import { useCallback, useEffect, useState } from "react";
+import { Plus } from "@techstack/react-feather";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 import { Divider, Toolbar } from "./components";
 import Editor from "./editor";
@@ -9,6 +10,7 @@ import {
   AlignPlugin,
   BgColorPlugin,
   FormatPlugin,
+  ImagePlugin,
   LinkPlugin,
   ListPlugin,
   TableActionMenuPlugin,
@@ -17,6 +19,7 @@ import {
 } from "./plugins";
 import OnChangePlugin from "./plugins/OnChangePlugin";
 import TableCellResizer from "./plugins/TableCellResizer";
+import Dropdown from "./ui/Dropdown";
 import { defaultConfig } from "./utils/configs";
 
 interface EditorInterface {
@@ -71,6 +74,8 @@ const EditorContainer = ({
     [onChange],
   );
 
+  const buttonIcon = useMemo(() => <Plus size={12} />, []);
+
   if (typeof window === "undefined") {
     return null;
   }
@@ -84,6 +89,7 @@ const EditorContainer = ({
       value={value}
     >
       {/* toolbar plugins */}
+      {/* @ts-expect-error - disable internal type */}
       <Toolbar>
         <FormatPlugin />
         <TextColorPlugin />
@@ -92,8 +98,12 @@ const EditorContainer = ({
         <LinkPlugin />
         <ListPlugin />
         <AlignPlugin />
-        {/* @ts-expect-error - disable internal type */}
-        <TablePlugin />
+        <Dropdown buttonIcon={buttonIcon} buttonLabel="Insert">
+          {/* @ts-expect-error - disable internal type */}
+          <TablePlugin />
+          {/* @ts-expect-error - disable internal type */}
+          <ImagePlugin />
+        </Dropdown>
       </Toolbar>
       {/* non toolbar plugins */}
       <OnChangePlugin onChange={onChangeFunction} />

@@ -2,16 +2,14 @@ import type { JSX, ReactNode } from "react";
 
 interface Props {
   children: ReactNode;
-  "data-test-id"?: string;
 }
 
-const DialogActions = ({
-  children,
-  "data-test-id": dataTestId,
-}: Props): JSX.Element => (
-  <div className="DialogActions" data-test-id={dataTestId}>
-    {children}
-  </div>
+const DialogActions = ({ children }: Props): JSX.Element => (
+  <div className="DialogActions">{children}</div>
 );
 
-export { DialogActions };
+const DialogButtonsList = ({ children }: Props): JSX.Element => (
+  <div className="DialogButtonsList">{children}</div>
+);
+
+export { DialogActions, DialogButtonsList };

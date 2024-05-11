@@ -55,6 +55,10 @@
     "regexp/require-unicode-regexp": "off",
     "regexp/require-unicode-sets-regexp": "off",
     "@typescript-eslint/strict-boolean-expressions": "off",
-    "import/no-unused-modules": "warn"
+    "@typescript-eslint/explicit-member-accessibility": "off",
+    "functional/no-this-expressions": "off",
+    "react/boolean-prop-naming": "off",
+    "import/no-unused-modules": "warn",
+    "import/no-cycle": "warn"
   }
 }

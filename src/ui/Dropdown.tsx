@@ -184,7 +184,7 @@ const DropDownItems = ({
 
 interface DropdownProps {
   buttonAriaLabel?: string;
-  buttonClassName: string;
+  buttonClassName?: string;
   buttonIcon: ReactNode;
   buttonIconClassName?: string;
   buttonLabel?: string;
@@ -193,7 +193,7 @@ interface DropdownProps {
 
 const DropDown = ({
   buttonAriaLabel,
-  buttonClassName,
+  buttonClassName = "toolbar-item spaced",
   buttonIcon,
   buttonIconClassName = "icon",
   buttonLabel,

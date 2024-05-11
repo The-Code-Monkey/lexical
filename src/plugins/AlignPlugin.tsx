@@ -142,11 +142,7 @@ const AlignPlugin = () => {
   );
 
   return (
-    <DropDown
-      buttonClassName="toolbar-item spaced"
-      buttonIcon={formatOption.icon}
-      buttonLabel={formatOption.name}
-    >
+    <DropDown buttonIcon={formatOption.icon} buttonLabel={formatOption.name}>
       <DropDownItem onClick={handleAlign("left")} title={left.name}>
         <i className="icon">{left.icon}</i>
         <span className="text">{left.name}</span>
