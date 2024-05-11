@@ -6,6 +6,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 
 import { Divider, Toolbar } from "./components";
 import Editor from "./editor";
+import useModal from "./hooks/useModal";
 import {
   AlignPlugin,
   BgColorPlugin,
@@ -39,6 +40,7 @@ const EditorContainer = ({
 }: EditorInterface) => {
   const [isSmallWidthViewport, setIsSmallWidthViewport] =
     useState<boolean>(false);
+  const [modal, showModal] = useModal();
 
   useEffect(() => {
     if (
@@ -88,8 +90,8 @@ const EditorContainer = ({
       placeholder={placeholder}
       value={value}
     >
+      {modal}
       {/* toolbar plugins */}
-      {/* @ts-expect-error - disable internal type */}
       <Toolbar>
         <FormatPlugin />
         <TextColorPlugin />
@@ -98,11 +100,11 @@ const EditorContainer = ({
         <LinkPlugin />
         <ListPlugin />
         <AlignPlugin />
+        <TablePlugin showModal={showModal} />
+        <ImagePlugin showModal={showModal} />
         <Dropdown buttonIcon={buttonIcon} buttonLabel="Insert">
-          {/* @ts-expect-error - disable internal type */}
-          <TablePlugin />
-          {/* @ts-expect-error - disable internal type */}
-          <ImagePlugin />
+          <TablePlugin showModal={showModal} />
+          <ImagePlugin showModal={showModal} />
         </Dropdown>
       </Toolbar>
       {/* non toolbar plugins */}

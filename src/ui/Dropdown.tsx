@@ -1,12 +1,9 @@
 import { ChevronDown } from "@techstack/react-feather";
 import {
-  Children,
-  cloneElement,
   createContext,
   type JSX,
   type KeyboardEvent,
   type PropsWithChildren,
-  type ReactElement,
   type ReactNode,
   type RefObject,
   useCallback,
@@ -189,14 +186,7 @@ interface DropdownProps {
   buttonIcon: ReactNode;
   buttonIconClassName?: string;
   buttonLabel?: string;
-  children: ReactElement | ReactElement[];
   disabled?: boolean;
-  /** @internal */ floatingAnchorElement?: HTMLDivElement | null /** @internal */;
-  /** @internal */ showModal?: (
-    title: string,
-    showModal: (onClose: () => void) => JSX.Element,
-  ) => void /** @internal */;
-  /** @internal */ toolbarReference?: RefObject<HTMLDivElement> /** @internal */;
 }
 
 const DropDown = ({
@@ -207,10 +197,7 @@ const DropDown = ({
   buttonLabel,
   children,
   disabled = false,
-  floatingAnchorElement,
-  showModal,
-  toolbarReference,
-}: DropdownProps): JSX.Element => {
+}: PropsWithChildren<DropdownProps>): JSX.Element => {
   const dropDownReference = useRef<HTMLDivElement>(null);
   const buttonReference = useRef<HTMLButtonElement>(null);
   const [showDropDown, setShowDropDown] = useState(false);
@@ -306,15 +293,7 @@ const DropDown = ({
       {Boolean(showDropDown) &&
         createPortal(
           <DropDownItems dropDownRef={dropDownReference} onClose={handleClose}>
-            {showModal
-              ? Children.map(children, (child: ReactElement) =>
-                  cloneElement(child, {
-                    floatingAnchorElem: floatingAnchorElement,
-                    showModal,
-                    toolbarRef: toolbarReference,
-                  }),
-                )
-              : children}
+            {children}
           </DropDownItems>,
           document.body,
         )}
