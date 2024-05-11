@@ -32,9 +32,9 @@ import { LOW_PRIORITY } from "../utils/priorities";
 type SupportedListTypes = "bullet" | "check" | "number";
 
 const supportedListTypesIcons: Record<SupportedListTypes, ReactNode> = {
-  bullet: <ListUl size={14} />,
-  check: <CheckSquare size={14} />,
-  number: <ListOl size={14} />,
+  bullet: <ListUl size={16} />,
+  check: <CheckSquare size={16} />,
+  number: <ListOl size={16} />,
 };
 
 const listTypeToListName: Record<SupportedListTypes, string> = {

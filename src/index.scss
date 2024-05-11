@@ -74,6 +74,8 @@
   margin-right: 12px;
   line-height: 16px;
   background-size: contain;
+  align-items: center;
+  justify-content: center;
 }
 
 .editor-container {
@@ -389,13 +391,10 @@ pre::-webkit-scrollbar-thumb {
     line-height: 20px;
     vertical-align: middle;
     font-size: 14px;
-    color: #777;
     text-overflow: ellipsis;
-    width: 70px;
     overflow: hidden;
     height: 20px;
     text-align: left;
-    padding-top: 3px;
   }
 
   .toolbar .toolbar-item .icon {
@@ -403,7 +402,6 @@ pre::-webkit-scrollbar-thumb {
     width: 20px;
     height: 20px;
     user-select: none;
-    margin-right: 8px;
     line-height: 16px;
     background-size: contain;
   }

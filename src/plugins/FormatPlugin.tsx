@@ -31,22 +31,22 @@ const ELEMENT_FORMAT_OPTIONS: {
   };
 } = {
   h1: {
-    icon: <TypeH1 />,
+    icon: <TypeH1 size={16} />,
     name: "Heading 1",
   },
 
   h2: {
-    icon: <TypeH2 />,
+    icon: <TypeH2 size={16} />,
     name: "Heading 2",
   },
 
   paragraph: {
-    icon: <TextParagraph />,
+    icon: <TextParagraph size={16} />,
     name: "Paragraph",
   },
 
   quote: {
-    icon: <Quote />,
+    icon: <Quote size={16} />,
     name: "Quote",
   },
 };
