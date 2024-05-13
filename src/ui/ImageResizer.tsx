@@ -11,10 +11,12 @@ const clamp = (value: number, min: number, max: number) =>
   Math.min(Math.max(value, min), max);
 
 const Direction = {
-  east: 1,
-  north: 8,
-  south: 2,
-  west: 4,
+  east: 1 << 0,
+  // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+  north: 1 << 3,
+  south: 1 << 1,
+  // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+  west: 1 << 2,
 };
 
 const FALLBACK_WIDTH = 100;
@@ -90,8 +92,8 @@ const ImageResizer = ({
       const ew = direction === Direction.east || direction === Direction.west;
       const ns = direction === Direction.north || direction === Direction.south;
       const nwse =
-        (direction && Direction.north && direction && Direction.west) ||
-        (direction && Direction.south && direction && Direction.east);
+        (direction && Direction.north & direction && Direction.west) ||
+        (direction && Direction.south & direction && Direction.east);
 
       let cursorDirection;
 
@@ -147,15 +149,15 @@ const ImageResizer = ({
   }, [editorRootElement]);
 
   const handlePointerMove = useCallback(
-    // eslint-disable-next-line complexity,sonarjs/cognitive-complexity
+    // eslint-disable-next-line sonarjs/cognitive-complexity
     (event: PointerEvent) => {
       const { current: image } = imageReference;
       const { current: positioning } = positioningReference;
 
       const isHorizontal =
-        positioning.direction && (Direction.east || Direction.west);
+        positioning.direction & (Direction.east | Direction.west);
       const isVertical =
-        positioning.direction && (Direction.south || Direction.north);
+        positioning.direction & (Direction.south | Direction.north);
 
       if (image !== null && positioning.isResizing) {
         const zoom = calculateZoomLevel(image);
@@ -164,7 +166,7 @@ const ImageResizer = ({
         if (isHorizontal && isVertical) {
           let diff = Math.floor(positioning.startX - event.clientX / zoom);
 
-          diff = positioning.direction && Direction.east ? -diff : diff;
+          diff = positioning.direction & Direction.east ? -diff : diff;
 
           const width = clamp(
             positioning.startWidth + diff,
@@ -181,7 +183,7 @@ const ImageResizer = ({
         } else if (isVertical) {
           let diff = Math.floor(positioning.startY - event.clientY / zoom);
 
-          diff = positioning.direction && Direction.south ? -diff : diff;
+          diff = positioning.direction & Direction.south ? -diff : diff;
 
           const height = clamp(
             positioning.startHeight + diff,
@@ -194,7 +196,7 @@ const ImageResizer = ({
         } else {
           let diff = Math.floor(positioning.startX - event.clientX / zoom);
 
-          diff = positioning.direction && Direction.east ? -diff : diff;
+          diff = positioning.direction & Direction.east ? -diff : diff;
 
           const width = clamp(
             positioning.startWidth + diff,
@@ -303,7 +305,7 @@ const ImageResizer = ({
 
   const onPointerDownNorthEast = useCallback(
     (event: ReactPointerEvent<HTMLDivElement>) => {
-      handlePointerDown(event, Direction.north || Direction.east);
+      handlePointerDown(event, Direction.north | Direction.east);
     },
     [handlePointerDown],
   );
@@ -317,7 +319,7 @@ const ImageResizer = ({
 
   const onPointerDownSouthEast = useCallback(
     (event: ReactPointerEvent<HTMLDivElement>) => {
-      handlePointerDown(event, Direction.south || Direction.east);
+      handlePointerDown(event, Direction.south | Direction.east);
     },
     [handlePointerDown],
   );
@@ -331,7 +333,7 @@ const ImageResizer = ({
 
   const onPointerDownSouthWest = useCallback(
     (event: ReactPointerEvent<HTMLDivElement>) => {
-      handlePointerDown(event, Direction.south || Direction.west);
+      handlePointerDown(event, Direction.south | Direction.west);
     },
     [handlePointerDown],
   );
@@ -345,7 +347,7 @@ const ImageResizer = ({
 
   const onPointerDownNorthWest = useCallback(
     (event: ReactPointerEvent<HTMLDivElement>) => {
-      handlePointerDown(event, Direction.north || Direction.west);
+      handlePointerDown(event, Direction.north | Direction.west);
     },
     [handlePointerDown],
   );

@@ -18,6 +18,7 @@ import {
   TablePlugin,
   TextColorPlugin,
 } from "./plugins";
+import DraggableBlockPlugin from "./plugins/DraggableBlockPlugin";
 import OnChangePlugin from "./plugins/OnChangePlugin";
 import TableCellResizer from "./plugins/TableCellResizer";
 import Dropdown from "./ui/Dropdown";
@@ -110,6 +111,7 @@ const EditorContainer = ({
       <MarkdownShortcutPlugin />
       <TableCellResizer />
       <TableActionMenuPlugin />
+      <DraggableBlockPlugin />
       {modal}
     </Editor>
   );

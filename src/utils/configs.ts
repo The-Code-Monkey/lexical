@@ -1,4 +1,5 @@
 import { CodeHighlightNode, CodeNode } from "@lexical/code";
+import { HashtagNode } from "@lexical/hashtag";
 import { AutoLinkNode, LinkNode } from "@lexical/link";
 import { ListItemNode, ListNode } from "@lexical/list";
 import type { InitialConfigType } from "@lexical/react/LexicalComposer";
@@ -29,6 +30,7 @@ const defaultConfig: InitialConfigType = {
     LinkNode,
     HorizontalRuleNode,
     ImageNode,
+    HashtagNode,
     ExtendedTextNode,
     {
       replace: TextNode,

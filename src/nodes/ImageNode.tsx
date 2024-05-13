@@ -13,7 +13,7 @@ import {
   type SerializedLexicalNode,
   type Spread,
 } from "lexical";
-import { lazy, Suspense } from "react";
+import { type JSX, lazy, Suspense } from "react";
 
 // eslint-disable-next-line import/no-cycle
 const ImageComponent = lazy(async () => await import("./ImageComponent"));
@@ -116,7 +116,7 @@ class ImageNode extends DecoratorNode<JSX.Element> {
     height?: number | "inherit",
     showCaption = false,
     caption?: LexicalEditor,
-    captionsEnabled = false,
+    captionsEnabled = true,
     key?: NodeKey,
   ) {
     super(key);

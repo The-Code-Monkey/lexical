@@ -38,7 +38,6 @@ import {
 } from "react";
 
 import { useSharedHistoryContext } from "../context/SharedHistoryContext";
-import LinkPlugin from "../plugins/LinkPlugin";
 import ContentEditable from "../ui/ContentEditable";
 import ImageResizer from "../ui/ImageResizer";
 import Placeholder from "../ui/Placeholder";
@@ -418,7 +417,6 @@ const ImageComponent = ({
           <div className="image-caption-container">
             <LexicalNestedComposer initialEditor={caption}>
               <AutoFocusPlugin />
-              <LinkPlugin />
               <HashtagPlugin />
               <HistoryPlugin externalHistoryState={historyState} />
               <RichTextPlugin

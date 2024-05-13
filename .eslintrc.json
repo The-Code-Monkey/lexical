@@ -59,6 +59,8 @@
     "functional/no-this-expressions": "off",
     "react/boolean-prop-naming": "off",
     "import/no-unused-modules": "warn",
-    "import/no-cycle": "warn"
+    "import/no-cycle": "warn",
+    "no-bitwise": "off",
+    "unicorn/prefer-math-trunc": "off"
   }
 }
