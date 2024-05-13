@@ -54,6 +54,10 @@
       "import": "./dist/esm/plugins/index.js",
       "require": "./dist/esm/plugins/index.js"
     },
+    "./components": {
+      "import": "./dist/esm/components/index.js",
+      "require": "./dist/esm/compnents/index.js"
+    },
     ".": {
       "import": "./dist/esm/index.js",
       "require": "./dist/esm/index.js"
