@@ -9,9 +9,6 @@ import {
   $isNodeSelection,
   $isRootOrShadowRoot,
   $setSelection,
-  COMMAND_PRIORITY_EDITOR,
-  COMMAND_PRIORITY_HIGH,
-  COMMAND_PRIORITY_LOW,
   createCommand,
   DRAGOVER_COMMAND,
   DRAGSTART_COMMAND,
@@ -39,6 +36,7 @@ import { DialogActions, DialogButtonsList } from "../ui/Dialog";
 import { DropDownContext, DropDownItem } from "../ui/Dropdown";
 import FileInput from "../ui/FileInput";
 import TextInput from "../ui/TextInput";
+import { LOW_PRIORITY } from "../utils/priorities";
 
 declare global {
   interface DragEvent {
@@ -88,12 +86,6 @@ const getDragImageData = (event: DragEvent): InsertImagePayload | null => {
   return data;
 };
 
-const TRANSPARENT_IMAGE =
-  "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
-const img = document.createElement("img");
-
-img.src = TRANSPARENT_IMAGE;
-
 const $onDragStart = (event: DragEvent): boolean => {
   const node = $getImageNodeInSelection();
 
@@ -106,6 +98,12 @@ const $onDragStart = (event: DragEvent): boolean => {
   if (!dataTransfer) {
     return false;
   }
+
+  const TRANSPARENT_IMAGE =
+    "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
+  const img = document.createElement("img");
+
+  img.src = TRANSPARENT_IMAGE;
 
   dataTransfer.setData("text/plain", "_");
   dataTransfer.setDragImage(img, 0, 0);
@@ -435,22 +433,22 @@ const ImagePlugin = ({ showModal }: ImagePluginProps) => {
 
           return true;
         },
-        COMMAND_PRIORITY_EDITOR,
+        LOW_PRIORITY,
       ),
       editor.registerCommand<DragEvent>(
         DRAGSTART_COMMAND,
         $onDragStart,
-        COMMAND_PRIORITY_HIGH,
+        LOW_PRIORITY,
       ),
       editor.registerCommand<DragEvent>(
         DRAGOVER_COMMAND,
         $onDragover,
-        COMMAND_PRIORITY_LOW,
+        LOW_PRIORITY,
       ),
       editor.registerCommand<DragEvent>(
         DROP_COMMAND,
         (event) => $onDrop(event, editor),
-        COMMAND_PRIORITY_HIGH,
+        LOW_PRIORITY,
       ),
     );
   }, [editor]);

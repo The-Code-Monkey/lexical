@@ -481,8 +481,9 @@ const TableActionMenu = ({
   );
 };
 
-const TOP_OFFSET = 4;
+const TOP_OFFSET = 1;
 const LEFT_OFFSET = 10;
+const TOP_DIVIDER_OFFSET = 2;
 
 interface TableCellActionMenuContainerProps {
   anchorElement: HTMLElement;
@@ -568,11 +569,13 @@ const TableCellActionMenuContainer = ({
       } else {
         const tableCellRect = tableCellNodeDOM.getBoundingClientRect();
         const menuRect = menuButtonDOM.getBoundingClientRect();
-        const anchorRect = anchorElement.getBoundingClientRect();
 
-        const top = tableCellRect.top - anchorRect.top + TOP_OFFSET;
-        const left =
-          tableCellRect.right - menuRect.width - LEFT_OFFSET - anchorRect.left;
+        const top =
+          tableCellRect.top -
+          (tableCellRect.top - tableCellRect.bottom) / TOP_DIVIDER_OFFSET -
+          menuRect.height / TOP_DIVIDER_OFFSET +
+          TOP_OFFSET;
+        const left = tableCellRect.right - menuRect.width - LEFT_OFFSET;
 
         menuButtonDOM.style.opacity = "1";
         menuButtonDOM.style.transform = `translate(${left}px, ${top}px)`;

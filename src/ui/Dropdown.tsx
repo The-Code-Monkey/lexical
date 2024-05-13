@@ -210,6 +210,7 @@ const DropDown = ({
     }
   }, []);
 
+  // eslint-disable-next-line sonarjs/cognitive-complexity
   const handleButtonPositionUpdate = useCallback(() => {
     if (showDropDown) {
       const { current: button } = buttonReference;
@@ -228,20 +229,25 @@ const DropDown = ({
         if (newPositionLeft !== dropDown.getBoundingClientRect().left) {
           dropDown.style.left = `${newPositionLeft}px`;
         }
+
+        dropDown.style.display = "block";
+      }
+    } else {
+      const { current: dropDown } = dropDownReference;
+
+      if (dropDown) {
+        dropDown.style.display = "none";
       }
     }
   }, [showDropDown]);
 
   useEffect(() => {
     const { current: button } = buttonReference;
+    const { current: dropDown } = dropDownReference;
 
     const handle = ({ target }: MouseEvent) => {
       if (button !== null && showDropDown) {
-        if (
-          dropDownReference.current?.contains(
-            target instanceof Node ? target : null,
-          )
-        ) {
+        if (dropDown?.contains(target instanceof Node ? target : null)) {
           return;
         }
 
@@ -273,6 +279,14 @@ const DropDown = ({
     }
   }, [showDropDown, handleButtonPositionUpdate]);
 
+  useEffect(() => {
+    const { current: dropDown } = dropDownReference;
+
+    if (dropDown) {
+      dropDown.style.display = showDropDown ? "block" : "none";
+    }
+  }, [showDropDown]);
+
   return (
     <>
       <button
@@ -291,13 +305,12 @@ const DropDown = ({
           <ChevronDown />
         </i>
       </button>
-      {Boolean(showDropDown) &&
-        createPortal(
-          <DropDownItems dropDownRef={dropDownReference} onClose={handleClose}>
-            {children}
-          </DropDownItems>,
-          document.body,
-        )}
+      {createPortal(
+        <DropDownItems dropDownRef={dropDownReference} onClose={handleClose}>
+          {children}
+        </DropDownItems>,
+        document.body,
+      )}
     </>
   );
 };

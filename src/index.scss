@@ -251,6 +251,10 @@
   text-transform: uppercase;
 }
 
+.table-cell-action-button-container {
+  z-index: 99;
+}
+
 .editor-quote {
   margin: 0;
   margin-left: 20px;
@@ -404,6 +408,8 @@ pre::-webkit-scrollbar-thumb {
     user-select: none;
     line-height: 16px;
     background-size: contain;
+    align-items: center;
+    justify-content: center;
   }
 
   .toolbar .toolbar-item .icon.paragraph {
