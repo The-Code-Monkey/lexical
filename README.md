@@ -16,3 +16,32 @@ import Editor from "@techstack/lexical";
 import "@techstack/lexical/css";
 
 <Editor name="editor" onChange={fn} placeholder="" value="" />
+```
+
+Composable way (below is list of included plugins and components)
+
+```jsx
+import Editor from "@techstack/lexical/editor";
+import {
+pluginName
+} from "@techstack/lexical/plugins";
+import { Toolbar } from "@techstack/lexical/components";
+
+import "@techstack/lexical/css";
+
+<Editor name="" onChange={} placeholder="" value="">
+<Toolbar>
+  {toolbarplugins}
+</Toolbar>
+{non toolbar plugins}
+</Editor>
+```
+
+## Plugins
+
+list coming soonish 
+
+## Components
+
+- Toolbar
+- Divider
