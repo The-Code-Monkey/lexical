@@ -285,7 +285,7 @@ const TableCellResizer = ({ editor }: TableCellResizerProps): JSX.Element => {
             const { height } = activeCell.elem.getBoundingClientRect();
             const heightChange = Math.abs(event.clientY - y) / zoom;
 
-            const isShrinking = direction === "bottom" && y > event.clientY;
+            const isShrinking = (direction === "bottom") && (y > event.clientY);
 
             updateRowHeight(
               Math.max(
@@ -307,7 +307,7 @@ const TableCellResizer = ({ editor }: TableCellResizerProps): JSX.Element => {
 
             const widthChange = Math.abs(event.clientX - x) / zoom;
 
-            const isShrinking = direction === "right" && x > event.clientX;
+            const isShrinking = (direction === "right") && (x > event.clientX);
 
             updateColumnWidth(
               Math.max(
