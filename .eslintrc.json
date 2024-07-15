@@ -62,6 +62,6 @@
     "import/no-cycle": "warn",
     "no-bitwise": "off",
     "unicorn/prefer-math-trunc": "off",
-    "@stylistic/max-len": ["error", 120]
+    "@stylistic/max-len": "off"
   }
 }
