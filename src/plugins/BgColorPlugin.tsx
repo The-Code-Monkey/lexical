@@ -15,7 +15,7 @@ import { LOW_PRIORITY } from "../utils/priorities";
 
 const BgColorPlugin = () => {
   const [editor] = useLexicalComposerContext();
-  const [bgColor, setBgColor] = useState<string>("#fff");
+  const [bgColor, setBgColor] = useState<string>("#fff0");
 
   const onBgColorSelect = useCallback(
     (value: string) => {
