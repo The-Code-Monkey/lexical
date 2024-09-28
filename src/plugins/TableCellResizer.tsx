@@ -414,14 +414,14 @@ const TableCellResizer = ({ editor }: TableCellResizerProps): JSX.Element => {
     <div ref={resizerReference}>
       {activeCell !== null && !isMouseDown && (
         <>
-          {/* eslint-disable-next-line max-len */}
+          {}
           {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
           <div
             className="TableCellResizer__resizer TableCellResizer__ui"
             onMouseDown={toggleResize("right")}
             style={resizerStyles.right ?? undefined}
           />
-          {/* eslint-disable-next-line max-len */}
+          {}
           {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
           <div
             className="TableCellResizer__resizer TableCellResizer__ui"

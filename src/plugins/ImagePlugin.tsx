@@ -179,7 +179,6 @@ const getDragSelection = (event: DragEvent): Range | null | undefined => {
   if (targetWindow instanceof Window) {
     const domSelection = getDOMSelection(targetWindow);
 
-    // eslint-disable-next-line max-len
     // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition,etc/no-deprecated
     if (document.caretRangeFromPoint) {
       // eslint-disable-next-line etc/no-deprecated

@@ -51,7 +51,6 @@ const RIGHT_CLICK_IMAGE_COMMAND: LexicalCommand<MouseEvent> = createCommand(
 
 const useSuspenseImage = (source: string) => {
   if (!imageCache.has(source)) {
-    // eslint-disable-next-line max-len
     // eslint-disable-next-line @typescript-eslint/no-throw-literal,@typescript-eslint/only-throw-error,promise/avoid-new
     throw new Promise((resolve) => {
       const img = new Image();
@@ -295,7 +294,7 @@ const ImageComponent = ({
         DRAGSTART_COMMAND,
         (event) => {
           if (event.target === imageReference.current) {
-            // eslint-disable-next-line max-len,no-warning-comments
+            // eslint-disable-next-line no-warning-comments
             // TODO This is just a temporary workaround for FF to behave like other browsers.
             // Ideally, this handles drag & drop too (and all browsers).
             event.preventDefault();

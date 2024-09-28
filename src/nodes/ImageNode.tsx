@@ -48,7 +48,6 @@ const $convertImageElement = (domNode: Node): DOMConversionOutput | null => {
   return null;
 };
 
-// eslint-disable-next-line max-len
 // eslint-disable-next-line react-prefer-function-component/react-prefer-function-component,functional/no-classes
 class ImageNode extends DecoratorNode<JSX.Element> {
   public static getType(): string {

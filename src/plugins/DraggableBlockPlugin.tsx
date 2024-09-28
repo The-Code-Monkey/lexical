@@ -175,7 +175,6 @@ const getBlockElement = (
         } else if (isOnBottomSide) {
           direction = Downward;
         } else {
-          // eslint-disable-next-line max-len
           // eslint-disable-next-line  unicorn/consistent-destructuring,@typescript-eslint/prefer-destructuring
           direction = Number.POSITIVE_INFINITY;
         }

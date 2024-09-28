@@ -6,12 +6,20 @@ import {
 } from "@lexical/rich-text";
 import { $setBlocksType } from "@lexical/selection";
 import { $findMatchingParent, mergeRegister } from "@lexical/utils";
-import { Quote, TextParagraph, TypeH1, TypeH2 } from "@techstack/react-feather";
+import {
+  Bold,
+  Italic,
+  Quote,
+  Strikethrough,
+  TextParagraph,
+  Underline,
+} from "@techstack/react-feather";
 import {
   $createParagraphNode,
   $getSelection,
   $isElementNode,
   $isRangeSelection,
+  FORMAT_TEXT_COMMAND,
   type LexicalNode,
   type RangeSelection,
   SELECTION_CHANGE_COMMAND,
@@ -22,7 +30,7 @@ import { type ReactNode, useCallback, useEffect, useState } from "react";
 import Dropdown, { DropDownItem } from "../ui/Dropdown";
 import { LOW_PRIORITY } from "../utils/priorities";
 
-type supportedBlockTypesType = "h1" | "h2" | "paragraph" | "quote";
+type supportedBlockTypesType = "h1" | "h2" | "h3" | "paragraph" | "quote";
 
 const ELEMENT_FORMAT_OPTIONS: {
   [key in supportedBlockTypesType]: {
@@ -31,13 +39,18 @@ const ELEMENT_FORMAT_OPTIONS: {
   };
 } = {
   h1: {
-    icon: <TypeH1 size={16} />,
+    icon: <>H1</>,
     name: "Heading 1",
   },
 
   h2: {
-    icon: <TypeH2 size={16} />,
+    icon: <>H2</>,
     name: "Heading 2",
+  },
+
+  h3: {
+    icon: <>H3</>,
+    name: "Heading 3",
   },
 
   paragraph: {
@@ -71,6 +84,10 @@ const getElementType = (element: LexicalNode | TextNode) =>
 
 const FormatPlugin = () => {
   const [editor] = useLexicalComposerContext();
+  const [isBold, setIsBold] = useState(false);
+  const [isItalic, setIsItalic] = useState(false);
+  const [isUnderline, setIsUnderline] = useState(false);
+  const [isStrikethrough, setIsStrikethrough] = useState(false);
 
   const [textFormat, setTextFormat] =
     useState<supportedBlockTypesType>("paragraph");
@@ -80,6 +97,11 @@ const FormatPlugin = () => {
 
     if ($isRangeSelection(selection)) {
       const element = getSelectionElement(selection);
+
+      setIsBold(selection.hasFormat("bold"));
+      setIsItalic(selection.hasFormat("italic"));
+      setIsUnderline(selection.hasFormat("underline"));
+      setIsStrikethrough(selection.hasFormat("strikethrough"));
 
       if (element) {
         const type = getElementType(element);
@@ -104,7 +126,8 @@ const FormatPlugin = () => {
             break;
           }
           case "h1":
-          case "h2": {
+          case "h2":
+          case "h3": {
             $setBlocksType(selection, () => $createHeadingNode(format));
 
             break;
@@ -140,29 +163,79 @@ const FormatPlugin = () => {
     [editor, update],
   );
 
+  const toggleBold = useCallback(() => {
+    editor.dispatchCommand(FORMAT_TEXT_COMMAND, "bold");
+  }, [editor]);
+
+  const toggleItalic = useCallback(() => {
+    editor.dispatchCommand(FORMAT_TEXT_COMMAND, "italic");
+  }, [editor]);
+
+  const toggleUnderline = useCallback(() => {
+    editor.dispatchCommand(FORMAT_TEXT_COMMAND, "underline");
+  }, [editor]);
+
+  const toggleStrikethrough = useCallback(() => {
+    editor.dispatchCommand(FORMAT_TEXT_COMMAND, "strikethrough");
+  }, [editor]);
+
   const { [textFormat]: currentFormat } = ELEMENT_FORMAT_OPTIONS;
   const { icon: currentIcon } = currentFormat;
 
   return (
-    <Dropdown buttonClassName="toolbar-item spaced" buttonIcon={currentIcon}>
-      {Object.keys(ELEMENT_FORMAT_OPTIONS)
-        .filter(isSupportedBlockTypesType)
-        .map((key) => {
-          const { [key]: element } = ELEMENT_FORMAT_OPTIONS;
-          const { icon, name } = element;
+    <>
+      <Dropdown buttonClassName="toolbar-item spaced" buttonIcon={currentIcon}>
+        {Object.keys(ELEMENT_FORMAT_OPTIONS)
+          .filter(isSupportedBlockTypesType)
+          .map((key) => {
+            const { [key]: element } = ELEMENT_FORMAT_OPTIONS;
+            const { icon, name } = element;
 
-          return (
-            <DropDownItem
-              key={key}
-              onClick={handleChangeFormat(key)}
-              title={name}
-            >
-              {icon}
-              {name}
-            </DropDownItem>
-          );
-        })}
-    </Dropdown>
+            return (
+              <DropDownItem
+                key={key}
+                onClick={handleChangeFormat(key)}
+                title={name}
+              >
+                {icon}
+                {name}
+              </DropDownItem>
+            );
+          })}
+      </Dropdown>
+      <button
+        aria-label="Format Bold"
+        className={`toolbar-item spaced ${isBold ? "active" : ""}`}
+        onClick={toggleBold}
+        type="button"
+      >
+        <Bold size={16} />
+      </button>
+      <button
+        aria-label="Format Italic"
+        className={`toolbar-item spaced ${isItalic ? "active" : ""}`}
+        onClick={toggleItalic}
+        type="button"
+      >
+        <Italic size={16} />
+      </button>
+      <button
+        aria-label="Format Underline"
+        className={`toolbar-item spaced ${isUnderline ? "active" : ""}`}
+        onClick={toggleUnderline}
+        type="button"
+      >
+        <Underline size={16} />
+      </button>
+      <button
+        aria-label="Format Strikethrough"
+        className={`toolbar-item spaced ${isStrikethrough ? "active" : ""}`}
+        onClick={toggleStrikethrough}
+        type="button"
+      >
+        <Strikethrough size={16} />
+      </button>
+    </>
   );
 };
 
