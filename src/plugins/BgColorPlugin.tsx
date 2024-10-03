@@ -15,7 +15,7 @@ import { LOW_PRIORITY } from "../utils/priorities";
 
 const BgColorPlugin = () => {
   const [editor] = useLexicalComposerContext();
-  const [bgColor, setBgColor] = useState<string>("#fff0");
+  const [bgColor, setBgColor] = useState<string>("#ffffff00");
 
   const onBgColorSelect = useCallback(
     (value: string) => {
@@ -32,7 +32,7 @@ const BgColorPlugin = () => {
         $getSelectionStyleValueForProperty(
           selection,
           "backgroundColor",
-          "#fff",
+          "#ffffff00",
         ),
       );
     }
