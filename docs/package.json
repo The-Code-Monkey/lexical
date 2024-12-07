@@ -1,6 +1,6 @@
 {
   "name": "docs",
-  "version": "0.1.18",
+  "version": "0.1.19",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -11,14 +11,14 @@
   "dependencies": {
     "@techstack/lexical": "file:..",
     "next": "15.0.4",
-    "react": "^18",
-    "react-dom": "^18",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "sass": "^1.77.1"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
     "typescript": "^5"
   }
 }
