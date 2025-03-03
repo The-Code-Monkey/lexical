@@ -211,7 +211,11 @@ const LinkPlugin = () => {
       const node = getSelectedNode(selection);
       const parent = node.getParent();
 
+      console.log(node, parent);
+
       if ($isLinkNode(parent) || $isLinkNode(node)) {
+        console.log("HERE");
+
         setIsLink(true);
       } else {
         setIsLink(false);
@@ -237,7 +241,7 @@ const LinkPlugin = () => {
           LowPriority,
         ),
       ),
-    [editor, update],
+    [editor, update, isLink],
   );
 
   const insertLink = useCallback(() => {

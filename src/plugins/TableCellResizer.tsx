@@ -18,6 +18,7 @@ import {
   useMemo,
   useRef,
   useState,
+  JSX,
 } from "react";
 import { createPortal } from "react-dom";
 

@@ -9,30 +9,23 @@
     "hardcore/fp",
     "hardcore/prettier"
   ],
-  "plugins": [
-    "prettier"
-  ],
+  "plugins": ["prettier"],
   "parserOptions": {
     "project": "./tsconfig.json"
   },
   "rules": {
-    "prettier/prettier": [
-      "error"
-    ],
+    "prettier/prettier": ["error"],
     "sonar/new-cap": "off",
     "sonar/public-static-readonly": "off",
     "@typescript-eslint/naming-convention": "off",
-    "func-style": [
-      "error",
-      "expression",
-      { "allowArrowFunctions": true }
-    ],
+    "func-style": ["error", "expression", { "allowArrowFunctions": true }],
     "functional/immutable-data": "off",
     "no-param-reassign": "off",
     "@typescript-eslint/prefer-readonly-parameter-types": "off",
     "@typescript-eslint/no-shadow": "off",
     "no-underscore-dangle": "off",
     "putout/putout": "off",
+    "no-console": "off",
     "ssr-friendly/no-dom-globals-in-module-scope": "off",
     "react/function-component-definition": "off",
     "react/forbid-component-props": "off",

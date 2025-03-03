@@ -16,7 +16,7 @@ import {
 import { createPortal } from "react-dom";
 
 interface DropDownContextType {
-  registerItem: (reference: RefObject<HTMLButtonElement>) => void;
+  registerItem: (reference: RefObject<HTMLButtonElement | null>) => void;
 }
 
 const DropDownContext = createContext<DropDownContextType | undefined>(
@@ -37,7 +37,7 @@ const DropDownItem = ({
   onClick,
   title,
 }: PropsWithChildren<DropDownItemProps>) => {
-  const reference = useRef<HTMLButtonElement>(null);
+  const reference = useRef<HTMLButtonElement | null>(null);
 
   const dropDownContext = useContext(DropDownContext);
 
@@ -67,7 +67,7 @@ const DropDownItem = ({
 };
 
 interface DropdownItemsProps {
-  dropDownRef: RefObject<HTMLDivElement>;
+  dropDownRef: RefObject<HTMLDivElement | null>;
   onClose: () => void;
 }
 
@@ -76,15 +76,17 @@ const DropDownItems = ({
   dropDownRef: dropDownReference,
   onClose,
 }: PropsWithChildren<DropdownItemsProps>) => {
-  const [items, setItems] = useState<RefObject<HTMLButtonElement>[]>();
+  const [items, setItems] = useState<RefObject<HTMLButtonElement | null>[]>();
   const [highlightedItem, setHighlightedItem] =
-    useState<RefObject<HTMLButtonElement>>();
+    useState<RefObject<HTMLButtonElement | null>>();
 
   const registerItem = useCallback(
-    (itemReference: RefObject<HTMLButtonElement>) => {
-      setItems((previous) =>
-        previous ? [...previous, itemReference] : [itemReference],
-      );
+    (itemReference: RefObject<HTMLButtonElement | null>) => {
+      if (itemReference.current !== null) {
+        setItems((previous) =>
+          previous ? [...previous, itemReference] : [itemReference],
+        );
+      }
     },
     [setItems],
   );
