@@ -2,7 +2,7 @@
   "name": "@techstack/lexical",
   "author": "The-Code-Monkey",
   "description": "a wrapper for facebook/lexical for react",
-  "version": "2.2.263",
+  "version": "2.2.264",
   "scripts": {
     "build": "tsc && cp ./src/index.scss ./dist/index.scss",
     "lint": "eslint ./src --fix",
@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "@testing-library/react": "16.3.0",
-    "@types/node": "22.19.1",
+    "@types/node": "22.19.2",
     "@types/react": "19.2.7",
     "@types/styled-components": "5.1.36",
     "@typescript-eslint/eslint-plugin": "7.18.0",
