@@ -1,6 +1,6 @@
 {
   "name": "docs",
-  "version": "0.1.74",
+  "version": "0.1.75",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -19,6 +19,6 @@
     "@types/node": "^22.0.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
-    "typescript": "^5"
+    "typescript": "^6.0.0"
   }
 }
